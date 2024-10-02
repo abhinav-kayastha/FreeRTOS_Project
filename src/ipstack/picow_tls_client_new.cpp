@@ -1,3 +1,7 @@
+//
+// Created by abhin on 02/10/2024.
+//
+
 /*
  * Copyright (c) 2023 Raspberry Pi (Trading) Ltd.
  *
@@ -8,11 +12,12 @@
 #include "pico/stdlib.h"
 #include "pico/cyw43_arch.h"
 #include "ipstack/tls_common.h"
+#include "ipstack/picow_tls_client_new.h"
 
 #if 1
 //#define TLS_CLIENT_SERVER        "18.198.188.151"
 #define TLS_CLIENT_SERVER        "api.thingspeak.com"
-#define TLS_CLIENT_HTTP_REQUEST  "GET https://api.thingspeak.com/channels/2674068/fields/1/last.txt?api_key=I6LSZGMETYSTJ0CT HTTP/1.1\r\n" \
+#define TLS_CLIENT_HTTP_REQUEST  "GET /talkbacks/53261/commands/execute.json?api_key=ZZ4SW85BXQ6W18HV HTTP/1.1\r\n" \
                                  "Host: " TLS_CLIENT_SERVER "\r\n" \
                                  "Connection: close\r\n" \
                                  "\r\n"
@@ -41,7 +46,7 @@ QaFXAdvGJkhKEwJVn3qETVlTdtSKpc/1KdXq/01HuX7cPfXVMGJVXuJAk6Yxgx8z\n\
 Ew==\n\
 -----END CERTIFICATE-----\n"
 
-bool run_tls_client_test(const uint8_t *cert, size_t cert_len, const char *server, const char *request, int timeout);
+
 
 #define WIFI_SSID "Nadim"
 #define WIFI_PASSWORD "nadimahmed"

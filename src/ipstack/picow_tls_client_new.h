@@ -1,3 +1,14 @@
+//
+// Created by abhin on 02/10/2024.
+//
+
+#ifndef RP2040_FREERTOS_IRQ_PICOW_TLS_CLIENT_NEW_H
+#define RP2040_FREERTOS_IRQ_PICOW_TLS_CLIENT_NEW_H
+
+//
+// Created by abhin on 02/10/2024.
+//
+
 /*
  * Copyright (c) 2023 Raspberry Pi (Trading) Ltd.
  *
@@ -12,7 +23,7 @@
 #if 1
 //#define TLS_CLIENT_SERVER        "18.198.188.151"
 #define TLS_CLIENT_SERVER        "api.thingspeak.com"
-#define TLS_CLIENT_HTTP_REQUEST  "GET https://api.thingspeak.com/channels/2674068/fields/1/last.txt?api_key=I6LSZGMETYSTJ0CT HTTP/1.1\r\n" \
+#define TLS_CLIENT_HTTP_REQUEST  "GET /talkbacks/53261/commands/execute.json?api_key=ZZ4SW85BXQ6W18HV HTTP/1.1\r\n" \
                                  "Host: " TLS_CLIENT_SERVER "\r\n" \
                                  "Connection: close\r\n" \
                                  "\r\n"
@@ -41,47 +52,11 @@ QaFXAdvGJkhKEwJVn3qETVlTdtSKpc/1KdXq/01HuX7cPfXVMGJVXuJAk6Yxgx8z\n\
 Ew==\n\
 -----END CERTIFICATE-----\n"
 
-bool run_tls_client_test(const uint8_t *cert, size_t cert_len, const char *server, const char *request, int timeout);
-
 #define WIFI_SSID "Nadim"
 #define WIFI_PASSWORD "nadimahmed"
 
-void tls_test(void) {
-    //stdio_init_all();
-#if 0
-    struct timeval now;
-    now.tv_sec = 1725920831;
-    now.tv_usec = 0;
-    settimeofday(&now, NULL);
-#endif
-    char ssid[] = WIFI_SSID;
-    char pwd[] = WIFI_PASSWORD;
-    printf("SSID: %s\nPWD: %s\n", ssid, pwd);//WIFI_SSID, WIFI_PASSWORD);
-    if (cyw43_arch_init()) {
-        printf("failed to initialise\n");
-        return;
-    }
-    cyw43_arch_enable_sta_mode();
+void tls_test(void);
 
-    if (cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASSWORD, CYW43_AUTH_WPA2_AES_PSK, 30000)) {
-        printf("failed to connect\n");
-        return;
-    }
-    const uint8_t cert_joe[] = TLS_JOES_SERVER;
-    const uint8_t dummy_cert[]={0};
 
-    //bool pass = run_tls_client_test(cert_joe, sizeof(cert_joe), TLS_CLIENT_SERVER, TLS_CLIENT_HTTP_REQUEST, TLS_CLIENT_TIMEOUT_SECS);
-    bool pass = run_tls_client_test(NULL, 0, TLS_CLIENT_SERVER, TLS_CLIENT_HTTP_REQUEST, TLS_CLIENT_TIMEOUT_SECS);
-    if (pass) {
-        printf("Test passed\n");
-    } else {
-        printf("Test failed\n");
-    }
-    /* sleep a bit to let usb stdio write out any buffer to host */
-    sleep_ms(100);
 
-    cyw43_arch_deinit();
-    printf("All done\n");
-    return;
-}
-
+#endif //RP2040_FREERTOS_IRQ_PICOW_TLS_CLIENT_NEW_H

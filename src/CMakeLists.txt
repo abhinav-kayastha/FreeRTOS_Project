@@ -9,8 +9,8 @@ add_executable(${ProjectName}
 #        ipstack/IPStack.cpp
 #        ipstack/IPStack.h
         ipstack/lwipopts.h
-        ipstack/tls_common.c
-        ipstack/picow_tls_client.c
+        ipstack/tls_common.cpp
+        ipstack/picow_tls_client_new.cpp
         ipstack/lwipopts_tls.h
 
         i2c/PicoI2C.cpp
@@ -40,6 +40,10 @@ add_executable(${ProjectName}
         painless/tftdisplay.cpp
         painless/tftdisplay.h
         abhinav/abhinav.cpp
+        ipstack/tls_common.h
+        ipstack/picow_tls_client_new.cpp
+        ipstack/picow_tls_client_new.h
+        #ipstack/picow_tls_client_new.h
 )
 
 target_include_directories(${ProjectName} PRIVATE

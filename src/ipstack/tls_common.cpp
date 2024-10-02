@@ -15,6 +15,7 @@
 #include "lwip/dns.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "tls_common.h"
 
 class TLSClient {
 public:
